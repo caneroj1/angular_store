@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="store">
+  <head>
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="./css/store.css" />
+  </head>
+  <body ng-controller="StoreController as store">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <h1>Joe's Gem Store</h1>
+          <h2> - Buy Fancy Gems - </h2>
+        </div>
+      </div>
+      <div class="row">
+        <ul class="list-group">
+          <li class="list-group-item item" ng-repeat="product in store.products | orderBy: '-price'">
+            <div ng-hide="product.soldOut">
+              <div class="col-md-2 text-center">
+                <img ng-src="{{product.image}}" class="img-rounded"/>
+              </div>
+              <div class="col-md-10">
+                <h3> {{product.name | uppercase }}
+                  <small>
+                    <em>By {{product.creator}}</em>
+                  </small>
+                  <em class="pull-right">
+                    {{product.price | currency}}
+                  </em>
+                </h3>
+                <div class="col-md-12 no-left-padding">
+                  <div class="col-md-10 no-left-padding">
+                    <p> {{product.description}} </p>
+                  </div>
+                </div>
+                <button ng-show="product.canPurchase" class="btn btn-primary"> Add to Cart </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <script type="text/javascript" src="./js/angular.min.js"></script>
+    <script type="text/javascript" src="./js/app.js"></script>
+  </body>
+</html>

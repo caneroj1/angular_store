@@ -1,0 +1,24 @@
+p {
+  font-weight: 200;
+}
+
+h1 {
+  font-size:45px;
+  font-weight:500;
+}
+
+li {
+  overflow: auto;
+}
+
+.item {
+  padding-bottom: 20px;
+}
+
+img {
+  width: 140px;
+}
+
+.no-left-padding {
+  padding-left: 0;
+}
