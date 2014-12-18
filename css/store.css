@@ -2,7 +2,7 @@ p, .review {
   font-weight: 200;
 }
 
-.review {
+.review, .limit {
   margin-left: 10px;
 }
 
@@ -31,6 +31,22 @@ img {
   padding-left: 0;
 }
 
+.no-right-padding {
+  padding-right: 0;
+}
+
+.extra-right-padding {
+  padding-right: 30px;
+}
+
 .row {
   margin-bottom: 20px;
+}
+
+submit-review {
+  height: 0;
+}
+
+textarea {
+  resize:none;
 }

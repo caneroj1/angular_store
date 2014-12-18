@@ -13,8 +13,8 @@
         </div>
         <div class="col-md-2 col-md-offset-5">
           <ul class="nav nav-pills nav-justified" ng-init="tab = 1">
-            <li ng-class="{ active: panel.isSelected(1) }"><a href="#" ng-click="panel.selectTab(1)">Store</a></li>
-            <li ng-class="{ active: panel.isSelected(2) }"><a href="#" ng-click="panel.selectTab(2)">Upload</a></li>
+            <li ng-class="{ active: panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Store</a></li>
+            <li ng-class="{ active: panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Upload</a></li>
           </ul>
         </div>
       </div>
@@ -35,9 +35,58 @@
                       {{product.price | currency}}
                     </em>
                   </h3>
-                  <div class="col-md-12 no-left-padding">
-                    <div class="col-md-10 no-left-padding">
+                  <div class="col-md-12 no-left-padding no-right-padding">
+                    <div class="col-md-10 no-left-padding extra-right-padding">
                       <p> {{product.description}} </p>
+                    </div>
+                    <!-- BEGIN MODAL -->
+                    <div class="modal fade" id="modal{{$index+1}}" tabindex="-1" role="dialog" aria-labelledby="Modal{{$index+1}}Label" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header text-center">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Review {{product.creator}}'s {{product.name}}</h4>
+                          </div>
+                          <div class="modal-body">
+                            <form role="form">
+                              <div class="form-group">
+                                <label for="reviewer" class="form-label">Your Name</label>
+                                <input type="text" class="form-control">
+                              </div>
+                              <div class="form-group">
+                                <label for="comments" class="form-label">Comments</label><span class="text-muted limit">275 character limit</span>
+                                <textarea class="form-control" rows="5" maxlength="275"></textarea>
+                              </div>
+                              <label class="form-label">Stars</label>
+                              <div class="form-group">
+                                <label class="radio-inline">
+                                  <input type="radio" name="starsRadioOptions" id="1" value="1">1
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="starsRadioOptions" id="2" value="2">2
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="starsRadioOptions" id="3" value="3">3
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="starsRadioOptions" id="4" value="4">4
+                                </label>
+                                <label class="radio-inline">
+                                  <input type="radio" name="starsRadioOptions" id="5" value="5">5
+                                </label>
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Submit</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- END MODAL -->
+                    <div class="col-md-2 no-right-padding text-right">
+                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{$index+1}}">Submit Review</button>
                     </div>
                   </div>
                   <button ng-show="product.canPurchase" class="btn btn-primary"> Add to Cart </button>
@@ -61,6 +110,8 @@
         </div>
       </div>
     </div>
+    <script type="text/javascript" src="./js/jquery-1.10.1.min.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/angular.min.js"></script>
     <script type="text/javascript" src="./js/app.js"></script>
   </body>
