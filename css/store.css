@@ -78,3 +78,7 @@ textarea {
 .ng-dirty.ng-valid {
   border-color: #6ed870;
 }
+
+.disabled {
+  margin-left: 0 !important;
+}
