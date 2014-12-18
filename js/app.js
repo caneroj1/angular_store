@@ -42,7 +42,7 @@
   app.directive('reviewFormSubmit', function() {
     return {
       restrict: 'E',
-      templateUrl: 'review-form-submit.html'
+      templateUrl: './review-form-submit.html'
     }
   });
 
@@ -54,7 +54,7 @@
         creator: 'John Smith',
         canPurchase: true,
         soldOut: false,
-        image: './assets/ruby.jpg',
+        image: '../assets/ruby.jpg',
         reviews: [
           {
             stars: 3,
@@ -69,7 +69,7 @@
         creator: 'Harvey Rockman',
         canPurchase: true,
         soldOut: false,
-        image: './assets/sapphire.jpg',
+        image: '../assets/sapphire.jpg',
         reviews: [
           {
             stars: 5,
@@ -90,7 +90,7 @@
         creator: 'Pete Green',
         canPurchase: true,
         soldOut: false,
-        image: './assets/emerald.jpg',
+        image: '../assets/emerald.jpg',
         reviews: []
     }
   ];
