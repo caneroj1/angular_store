@@ -10,6 +10,26 @@ p, .review {
   margin-top: 10px;
 }
 
+.stars5 {
+  width: 100px;
+}
+
+.stars4 {
+  width: 80px;
+}
+
+.stars3 {
+  width: 60px;
+}
+
+.stars2 {
+  width: 40px;
+}
+
+.stars1 {
+  width: 20px;
+}
+
 h1 {
   font-size:45px;
   font-weight:500;
