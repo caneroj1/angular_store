@@ -39,6 +39,13 @@
     }
   });
 
+  app.directive('reviewFormSubmit', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'review-form-submit.html'
+    }
+  });
+
   var gems = [
     {
         name: 'Ruby',
