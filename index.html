@@ -42,45 +42,45 @@
                     <!-- BEGIN MODAL -->
                     <div class="modal fade" id="modal{{$index+1}}" tabindex="-1" role="dialog" aria-labelledby="Modal{{$index+1}}Label" aria-hidden="true">
                       <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header text-center">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Review {{product.creator}}'s {{product.name}}</h4>
-                          </div>
-                          <div class="modal-body">
-                            <form role="form">
+                        <form role="form" class="submit-review-form" ng-controller="FormController as form" ng-submit="form.addReview(product)">
+                          <div class="modal-content">
+                            <div class="modal-header text-center">
+                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                              <h4 class="modal-title" id="myModalLabel">Review {{product.creator}}'s {{product.name}}</h4>
+                            </div>
+                            <div class="modal-body">
                               <div class="form-group">
                                 <label for="reviewer" class="form-label">Your Name</label>
-                                <input type="text" class="form-control">
+                                <input ng-model="form.formInfo.reviewer" type="text" class="form-control">
                               </div>
                               <div class="form-group">
                                 <label for="comments" class="form-label">Comments</label><span class="text-muted limit">275 character limit</span>
-                                <textarea class="form-control" rows="5" maxlength="275"></textarea>
+                                <textarea ng-model="form.formInfo.comments" class="form-control" rows="5" maxlength="275"></textarea>
                               </div>
                               <label class="form-label">Stars</label>
                               <div class="form-group">
                                 <label class="radio-inline">
-                                  <input type="radio" name="starsRadioOptions" id="1" value="1">1
+                                  <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="1" value="1">1
                                 </label>
                                 <label class="radio-inline">
-                                  <input type="radio" name="starsRadioOptions" id="2" value="2">2
+                                  <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="2" value="2">2
                                 </label>
                                 <label class="radio-inline">
-                                  <input type="radio" name="starsRadioOptions" id="3" value="3">3
+                                  <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="3" value="3">3
                                 </label>
                                 <label class="radio-inline">
-                                  <input type="radio" name="starsRadioOptions" id="4" value="4">4
+                                  <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="4" value="4">4
                                 </label>
                                 <label class="radio-inline">
-                                  <input type="radio" name="starsRadioOptions" id="5" value="5">5
+                                  <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="5" value="5">5
                                 </label>
                               </div>
-                            </form>
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                          </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                          </form>
                         </div>
                       </div>
                     </div>
@@ -99,7 +99,7 @@
                       <blockquote>
                         <p>{{review.comments}}</p>
                         <strong>{{review.stars}} stars</strong>
-                        <h4>{{review.reviewer}}</h4>
+                        <h4>- {{review.reviewer}}</h4>
                       </blockquote>
                     </div>
                   </div>
@@ -114,5 +114,6 @@
     <script type="text/javascript" src="./js/bootstrap.min.js"></script>
     <script type="text/javascript" src="./js/angular.min.js"></script>
     <script type="text/javascript" src="./js/app.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
   </body>
 </html>

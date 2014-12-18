@@ -30,6 +30,15 @@
     };
   });
 
+  app.controller('FormController', function() {
+    this.formInfo = {};
+
+    this.addReview = function(product) {
+      product.reviews.push(this.formInfo);
+      this.formInfo = {};
+    }
+  });
+
   var gems = [
     {
         name: 'Ruby',
@@ -58,7 +67,7 @@
           {
             stars: 5,
             reviewer: "Joe Schmoe",
-            comments: "I am totally impressed with what this sapphire can do. I gave it to my girlfirend, whom I hate, and she broke up with me on the spot! Thanks Harvey!"
+            comments: "I am totally impressed with what this sapphire can do. I gave it to my girlfriend, whom I hate, and she broke up with me on the spot! Thanks Harvey!"
           },
           {
             stars: 4,
