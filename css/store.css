@@ -1,5 +1,13 @@
-p {
+p, .review {
   font-weight: 200;
+}
+
+.review {
+  margin-left: 10px;
+}
+
+.reviewList {
+  margin-top: 10px;
 }
 
 h1 {
@@ -21,4 +29,8 @@ img {
 
 .no-left-padding {
   padding-left: 0;
+}
+
+.row {
+  margin-bottom: 20px;
 }

@@ -5,39 +5,60 @@
     <link rel="stylesheet" type="text/css" href="./css/store.css" />
   </head>
   <body ng-controller="StoreController as store">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-controller="PanelController as panel">
       <div class="row">
         <div class="col-md-12 text-center">
           <h1>Joe's Gem Store</h1>
           <h2> - Buy Fancy Gems - </h2>
         </div>
+        <div class="col-md-2 col-md-offset-5">
+          <ul class="nav nav-pills nav-justified" ng-init="tab = 1">
+            <li ng-class="{ active: panel.isSelected(1) }"><a href="#" ng-click="panel.selectTab(1)">Store</a></li>
+            <li ng-class="{ active: panel.isSelected(2) }"><a href="#" ng-click="panel.selectTab(2)">Upload</a></li>
+          </ul>
+        </div>
       </div>
-      <div class="row">
-        <ul class="list-group">
-          <li class="list-group-item item" ng-repeat="product in store.products | orderBy: '-price'">
-            <div ng-hide="product.soldOut">
-              <div class="col-md-2 text-center">
-                <img ng-src="{{product.image}}" class="img-rounded"/>
-              </div>
-              <div class="col-md-10">
-                <h3> {{product.name | uppercase }}
-                  <small>
-                    <em>By {{product.creator}}</em>
-                  </small>
-                  <em class="pull-right">
-                    {{product.price | currency}}
-                  </em>
-                </h3>
-                <div class="col-md-12 no-left-padding">
-                  <div class="col-md-10 no-left-padding">
-                    <p> {{product.description}} </p>
+      <div >
+        <div class="row" ng-show="panel.isSelected(1)" ng-controller="ReviewController as review">
+          <ul class="list-group">
+            <li class="list-group-item item" ng-repeat="product in store.products | orderBy: '-price'">
+              <div ng-hide="product.soldOut">
+                <div class="col-md-2 text-center">
+                  <img ng-src="{{product.image}}" class="img-rounded"/>
+                </div>
+                <div class="col-md-10">
+                  <h3> {{product.name | uppercase }}
+                    <small>
+                      <em>By {{product.creator}}</em>
+                    </small>
+                    <em class="pull-right">
+                      {{product.price | currency}}
+                    </em>
+                  </h3>
+                  <div class="col-md-12 no-left-padding">
+                    <div class="col-md-10 no-left-padding">
+                      <p> {{product.description}} </p>
+                    </div>
+                  </div>
+                  <button ng-show="product.canPurchase" class="btn btn-primary"> Add to Cart </button>
+                  <a href class="review" ng-click="review.selectReview($index + 1)" ng-hide="review.whichReview($index + 1) || product.reviews.length === 0">See Reviews</a>
+                  <a href class="review" ng-click="review.selectReview(0)" ng-show="review.whichReview($index + 1)">Hide Reviews</a>
+                </div>
+                <div class="col-md-10 col-md-offset-2 reviewList" ng-show="review.whichReview($index + 1)">
+                  <div class="col-md-12" ng-repeat="review in product.reviews">
+                    <div class="col-md-4">
+                      <blockquote>
+                        <p>{{review.comments}}</p>
+                        <strong>{{review.stars}} stars</strong>
+                        <h4>{{review.reviewer}}</h4>
+                      </blockquote>
+                    </div>
                   </div>
                 </div>
-                <button ng-show="product.canPurchase" class="btn btn-primary"> Add to Cart </button>
               </div>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <script type="text/javascript" src="./js/angular.min.js"></script>

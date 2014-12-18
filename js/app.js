@@ -5,6 +5,31 @@
     this.products = gems;
   });
 
+  app.controller('PanelController', function() {
+    this.tab = 1;
+    this.review = 0;
+
+    this.selectTab = function(clicked) {
+      this.tab = clicked;
+    };
+
+    this.isSelected = function(tab) {
+      return this.tab === tab;
+    };
+  });
+
+  app.controller('ReviewController', function() {
+    this.review = 0;
+
+    this.selectReview = function(clicked) {
+      this.review = clicked;
+    };
+
+    this.whichReview = function(review) {
+      return this.review === review;
+    };
+  });
+
   var gems = [
     {
         name: 'Ruby',
@@ -13,7 +38,13 @@
         creator: 'John Smith',
         canPurchase: true,
         soldOut: false,
-        image: './assets/ruby.jpg'
+        image: './assets/ruby.jpg',
+        reviews: [
+          {
+            stars: 3,
+            reviewer: "Bob Jones",
+            comments: "Wow, John Smith! This really rocks! Keep up the good work."
+          }]
     },
     {
         name: 'Sapphire',
@@ -22,7 +53,19 @@
         creator: 'Harvey Rockman',
         canPurchase: true,
         soldOut: false,
-        image: './assets/sapphire.jpg'
+        image: './assets/sapphire.jpg',
+        reviews: [
+          {
+            stars: 5,
+            reviewer: "Joe Schmoe",
+            comments: "I am totally impressed with what this sapphire can do. I gave it to my girlfirend, whom I hate, and she broke up with me on the spot! Thanks Harvey!"
+          },
+          {
+            stars: 4,
+            reviewer: "Alex Asphault",
+            comments: "Yeah, not bad."
+          }
+        ]
     },
     {
         name: 'Emerald',
@@ -31,7 +74,8 @@
         creator: 'Pete Green',
         canPurchase: true,
         soldOut: false,
-        image: './assets/emerald.jpg'
+        image: './assets/emerald.jpg',
+        reviews: []
     }
   ];
 })();
