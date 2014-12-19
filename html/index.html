@@ -46,7 +46,7 @@
                       <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{$index+1}}">Submit Review</button>
                     </div>
                   </div>
-                  <button ng-show="product.canPurchase" class="btn btn-primary"> Add to Cart </button>
+                  <add-to-cart></add-to-cart>
                   <a href class="review" ng-click="review.selectReview($index + 1)" ng-hide="review.whichReview($index + 1) || product.reviews.length === 0">See Reviews</a>
                   <a href class="review" ng-click="review.selectReview(0)" ng-show="review.whichReview($index + 1)">Hide Reviews</a>
                 </div>
@@ -70,6 +70,7 @@
     <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/angular.min.js"></script>
+    <script type="text/javascript" src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
     <script type="text/javascript" src="../js/app.js"></script>
   </body>
 </html>

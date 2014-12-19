@@ -1,13 +1,28 @@
 (function() {
-  var app = angular.module('store', []);
+  var app = angular.module('store', ['ngStorage']);
 
-  app.controller('StoreController', ['$http', function($http) {
+  app.controller('StoreController', ['$http', '$scope', '$localStorage', '$sessionStorage', function($http, $scope, $localStorage, $sessionStorage) {
     this.products = {};
+    $scope.$storage = $localStorage;
+    $scope.$storage.cart = $scope.$storage.cart || {};
+
     var store = this;
 
     $http.get('../json/products.json').success(function(data) {
       store.products = data;
     })
+
+    this.addToCart = function(item) {
+      $scope.$storage.cart[item] = store.products[item];
+    }
+
+    this.removeFromCart = function(item) {
+      delete $scope.$storage.cart[item];
+    }
+
+    this.inCart = function(item) {
+      return(item in $scope.$storage.cart);
+    }
   }]);
 
   app.controller('PanelController', function() {
@@ -55,6 +70,13 @@
         }
       },
       controllerAs: 'form'
+    }
+  });
+
+  app.directive('addToCart', function() {
+    return {
+      restrict: 'E',
+      templateUrl: './add-to-cart.html'
     }
   });
 })();
