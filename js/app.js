@@ -35,19 +35,26 @@
     };
   });
 
-  app.controller('FormController', function() {
-    this.formInfo = {};
-
-    this.addReview = function(product) {
-      product.reviews.push(this.formInfo);
-      this.formInfo = {};
-    }
-  });
-
   app.directive('reviewFormSubmit', function() {
     return {
       restrict: 'E',
       templateUrl: './review-form-submit.html'
+    }
+  });
+
+  app.directive('reviewForm', function() {
+    return {
+      restrict: 'E',
+      templateUrl: './review-form.html',
+      controller: function() {
+        this.formInfo = {};
+
+        this.addReview = function(product) {
+          product.reviews.push(this.formInfo);
+          this.formInfo = {};
+        }
+      },
+      controllerAs: 'form'
     }
   });
 })();

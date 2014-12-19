@@ -1,0 +1,45 @@
+<div class="modal fade" id="modal{{$index+1}}" tabindex="-1" role="dialog" aria-labelledby="Modal{{$index+1}}Label" aria-hidden="true">
+  <div class="modal-dialog">
+    <form name="reviewForm" role="form" class="submit-review-form" ng-submit="reviewForm.$valid && form.addReview(product)" novalidate>
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title" id="myModalLabel">Review {{product.creator}}'s {{product.name}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="reviewer" class="form-label">Your Name</label>
+            <input required ng-model="form.formInfo.reviewer" type="text" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="comments" class="form-label">Comments</label><span class="text-muted limit">275 character limit</span>
+            <textarea required ng-model="form.formInfo.comments" class="form-control" rows="5" maxlength="275"></textarea>
+          </div>
+          <label class="form-label">Stars</label>
+          <div class="form-group">
+            <label class="radio-inline">
+              <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="1" value="1" required>1
+            </label>
+            <label class="radio-inline">
+              <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="2" value="2" required>2
+            </label>
+            <label class="radio-inline">
+              <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="3" value="3" required>3
+            </label>
+            <label class="radio-inline">
+              <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="4" value="4" required>4
+            </label>
+            <label class="radio-inline">
+              <input ng-model="form.formInfo.stars" type="radio" name="starsRadioOptions" id="5" value="5" required>5
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <review-form-submit></review-form-submit>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script type="text/javascript" src="../js/script.js"></script>
