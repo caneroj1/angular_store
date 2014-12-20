@@ -1,6 +1,6 @@
 <div class="modal fade" id="modal{{$index+1}}" tabindex="-1" role="dialog" aria-labelledby="Modal{{$index+1}}Label" aria-hidden="true">
   <div class="modal-dialog">
-    <form name="reviewForm" role="form" class="submit-review-form" ng-submit="reviewForm.$valid && form.addReview(product)" novalidate>
+    <form name="reviewForm" role="form" class="submit-review-form" ng-submit="reviewForm.$valid && form.addReview(product, $index)" novalidate>
       <div class="modal-content">
         <div class="modal-header text-center">
           <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -42,4 +42,3 @@
     </form>
   </div>
 </div>
-<script type="text/javascript" src="../js/script.js"></script>

@@ -2,15 +2,25 @@
   var app = angular.module('store', ['ngStorage']);
 
   app.controller('StoreController', ['$http', '$scope', '$localStorage', '$sessionStorage', function($http, $scope, $localStorage, $sessionStorage) {
-    this.products = {};
+    // initialize local storage
     $scope.$storage = $localStorage;
+
+    // initialize our local storage for the shopping cart either to itself or to an empty object
     $scope.$storage.cart = $scope.$storage.cart || {};
 
-    var store = this;
+    // initialize our local storage for products either to itself or to an empty array
+    $scope.$storage.products = $scope.$storage.products || [];
+    this.products = $scope.$storage.products;
 
-    $http.get('../json/products.json').success(function(data) {
-      store.products = data;
-    })
+    // if the local storage for the products is empty, then we need to fetch the data via ajax request
+    // once that is done, set local storage to that data and then set our products to the local storage
+    if($scope.$storage.products.length === 0) {
+      var store = this;
+      $http.get('../json/products.json').success(function(data) {
+        $scope.$storage.products = data;
+        store.products = $scope.$storage.products;
+      });
+    }
 
     this.addToCart = function(item) {
       $scope.$storage.cart[item] = store.products[item];
@@ -22,6 +32,15 @@
 
     this.inCart = function(item) {
       return(item in $scope.$storage.cart);
+    }
+
+    this.showReviews = function(product) {
+      product.showReviews = true;
+    }
+
+    this.hideReviews = function(product) {
+      console.log('here@');
+      product.showReviews = false;
     }
   }]);
 
@@ -38,37 +57,19 @@
     };
   });
 
-  app.controller('ReviewController', function() {
-    this.review = 0;
-
-    this.selectReview = function(clicked) {
-      this.review = clicked;
-    };
-
-    this.whichReview = function(review) {
-      return this.review === review;
-    };
-  });
-
-  app.directive('reviewFormSubmit', function() {
-    return {
-      restrict: 'E',
-      templateUrl: './review-form-submit.html'
-    }
-  });
-
   app.directive('reviewForm', function() {
     return {
       restrict: 'E',
       templateUrl: './review-form.html',
-      controller: function() {
+      controller: ['$scope', '$localStorage', function($scope, $localStorage) {
         this.formInfo = {};
 
-        this.addReview = function(product) {
-          product.reviews.push(this.formInfo);
+        this.addReview = function(product, index) {
+          // add the review to the product in local storage
+          $scope.$storage.products[index].reviews.push(this.formInfo);
           this.formInfo = {};
         }
-      },
+      }],
       controllerAs: 'form'
     }
   });
@@ -77,6 +78,13 @@
     return {
       restrict: 'E',
       templateUrl: './add-to-cart.html'
+    }
+  });
+
+  app.directive('reviewFormSubmit', function() {
+    return {
+      restrict: 'E',
+      templateUrl: './review-form-submit.html'
     }
   });
 })();

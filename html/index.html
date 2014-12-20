@@ -18,59 +18,57 @@
           </ul>
         </div>
       </div>
-      <div >
-        <div class="row" ng-show="panel.isSelected(1)" ng-controller="ReviewController as review">
-          <ul class="list-group">
-            <li class="list-group-item item" ng-repeat="product in store.products | orderBy: '-price'">
-              <div ng-hide="product.soldOut">
-                <div class="col-md-2 text-center">
-                  <img ng-src="{{product.image}}" class="img-rounded"/>
-                </div>
-                <div class="col-md-10">
-                  <h3> {{product.name | uppercase }}
-                    <small>
-                      <em>By {{product.creator}}</em>
-                    </small>
-                    <em class="pull-right">
-                      {{product.price | currency}}
-                    </em>
-                  </h3>
-                  <div class="col-md-12 no-left-padding no-right-padding">
-                    <div class="col-md-10 no-left-padding extra-right-padding">
-                      <p> {{product.description}} </p>
-                    </div>
-                    <!-- BEGIN MODAL -->
-                    <review-form></review-form>
-                    <!-- END MODAL -->
-                    <div class="col-md-2 no-right-padding text-right">
-                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{$index+1}}">Submit Review</button>
-                    </div>
+      <div class="row" ng-show="panel.isSelected(1)">
+        <ul class="list-group">
+          <li class="list-group-item item" ng-repeat="product in store.products ">
+            <div ng-hide="product.soldOut">
+              <div class="col-md-2 text-center">
+                <img ng-src="{{product.image}}" class="img-rounded"/>
+              </div>
+              <div class="col-md-10">
+                <h3> {{product.name | uppercase }}
+                  <small>
+                    <em>By {{product.creator}}</em>
+                  </small>
+                  <em class="pull-right">
+                    {{product.price | currency}}
+                  </em>
+                </h3>
+                <div class="col-md-12 no-left-padding no-right-padding">
+                  <div class="col-md-10 no-left-padding extra-right-padding">
+                    <p> {{product.description}} </p>
                   </div>
-                  <add-to-cart></add-to-cart>
-                  <a href class="review" ng-click="review.selectReview($index + 1)" ng-hide="review.whichReview($index + 1) || product.reviews.length === 0">See Reviews</a>
-                  <a href class="review" ng-click="review.selectReview(0)" ng-show="review.whichReview($index + 1)">Hide Reviews</a>
+                  <!-- BEGIN MODAL -->
+                  <review-form></review-form>
+                  <!-- END MODAL -->
+                  <div class="col-md-2 no-right-padding text-right">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{$index+1}}">Submit Review</button>
+                  </div>
                 </div>
-                <div class="col-md-10 col-md-offset-2 reviewList" ng-show="review.whichReview($index + 1)">
-                  <div class="col-md-12" ng-repeat="review in product.reviews">
-                    <div class="col-md-4">
-                      <blockquote>
-                        <p>{{review.comments}}</p>
-                        <img ng-src="../assets/star{{review.stars}}.jpg" class="stars{{review.stars}}">
-                        <h4>- {{review.reviewer}}</h4>
-                      </blockquote>
-                    </div>
+                <add-to-cart></add-to-cart>
+                <show-review-button></show-review-button>
+              </div>
+              <div class="col-md-10 col-md-offset-2 reviewList" ng-show="product.showReviews">
+                <div class="col-md-12" ng-repeat="review in product.reviews track by $index">
+                  <div class="col-md-4">
+                    <blockquote>
+                      <p>{{review.comments}}</p>
+                      <img ng-src="../assets/star{{review.stars}}.jpg" class="stars{{review.stars}}">
+                      <h4>- {{review.reviewer}}</h4>
+                    </blockquote>
                   </div>
                 </div>
               </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
     <script type="text/javascript" src="../js/jquery-1.10.1.min.js"></script>
     <script type="text/javascript" src="../js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../js/angular.min.js"></script>
-    <script type="text/javascript" src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+    <script type="text/javascript" src="../js/ngStorage.min.js"></script>
     <script type="text/javascript" src="../js/app.js"></script>
+    <script type="text/javascript" src="../js/script.js"></script>
   </body>
 </html>
