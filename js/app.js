@@ -22,8 +22,8 @@
       });
     }
 
-    this.addToCart = function(item) {
-      $scope.$storage.cart[item] = store.products[item];
+    this.addToCart = function(index, product) {
+      $scope.$storage.cart[index] = product;
     }
 
     this.removeFromCart = function(item) {
@@ -39,10 +39,18 @@
     }
 
     this.hideReviews = function(product) {
-      console.log('here@');
       product.showReviews = false;
     }
   }]);
+
+  app.directive('productList', function() {
+    return {
+      restrict: 'E',
+      templateUrl: './product-list.html',
+      controller: 'StoreController',
+      controllerAs: 'store',
+    };
+  });
 
   app.controller('PanelController', function() {
     this.tab = 1;
@@ -77,14 +85,29 @@
   app.directive('addToCart', function() {
     return {
       restrict: 'E',
-      templateUrl: './add-to-cart.html'
-    }
+      templateUrl: './add-to-cart.html',
+    };
+  });
+
+  app.directive('showReviewButton', function() {
+    return {
+      restrict: 'E',
+      templateUrl: './show-review-button.html'
+    };
   });
 
   app.directive('reviewFormSubmit', function() {
     return {
       restrict: 'E',
       templateUrl: './review-form-submit.html'
-    }
+    };
   });
+
+  app.directive('productBasicInfo', function () {
+    return {
+      restrict: 'E',
+      templateUrl: './product-basic-info.html'
+    };
+  });
+
 })();

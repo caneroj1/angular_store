@@ -1,0 +1,36 @@
+<ul class="list-group">
+  <li class="list-group-item item" ng-repeat="product in store.products ">
+    <div ng-hide="product.soldOut">
+      <div class="col-md-2 text-center">
+        <img ng-src="{{product.image}}" class="img-rounded"/>
+      </div>
+      <div class="col-md-10">
+        <product-basic-info></product-basic-info>
+        <div class="col-md-12 no-left-padding no-right-padding">
+          <div class="col-md-10 no-left-padding extra-right-padding">
+            <p> {{product.description}} </p>
+          </div>
+          <!-- BEGIN MODAL -->
+          <review-form></review-form>
+          <!-- END MODAL -->
+          <div class="col-md-2 no-right-padding text-right">
+            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{$index+1}}">Submit Review</button>
+          </div>
+        </div>
+        <add-to-cart></add-to-cart>
+        <show-review-button></show-review-button>
+      </div>
+      <div class="col-md-10 col-md-offset-2 reviewList" ng-show="product.showReviews">
+        <div class="col-md-12" ng-repeat="review in product.reviews track by $index">
+          <div class="col-md-4">
+            <blockquote>
+              <p>{{review.comments}}</p>
+              <img ng-src="../assets/star{{review.stars}}.jpg" class="stars{{review.stars}}">
+              <h4>- {{review.reviewer}}</h4>
+            </blockquote>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
