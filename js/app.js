@@ -48,8 +48,27 @@
       restrict: 'E',
       templateUrl: './product-list.html',
       controller: 'StoreController',
-      controllerAs: 'store',
+      controllerAs: 'store'
     };
+  });
+
+  app.directive('uploadProduct', function() {
+    return {
+      restrict: 'E',
+      templateUrl: './upload-product.html',
+      controller: ['$scope', '$localStorage', function($scope, $localStorage) {
+        this.newProduct = {};
+
+        this.addProduct = function() {
+          this.products.canPurchase = true;
+          this.products.soldOut = false;
+          
+          $scope.$storage.products.push(this.newProduct);
+          this.newProduct = {};
+        }
+      }],
+      controllerAs: 'upload'
+    }
   });
 
   app.controller('PanelController', function() {

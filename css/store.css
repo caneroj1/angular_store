@@ -82,3 +82,7 @@ textarea {
 .disabled {
   margin-left: 0 !important;
 }
+
+textarea {
+  resize: vertical;
+}

@@ -1,0 +1,48 @@
+<div class="col-md-8 col-md-offset-2 text-center">
+  <h2>Upload a new Product</h3>
+  <hr/>
+  <div class="col-md-8 col-md-offset-2">
+    <form name="uploadForm" enctype="multipart/form-data" ng-submit="uploadForm.$valid && upload.addProduct()" class="form-horizontal" novalidate>
+      <div class="form-group">
+        <label class="control-label col-sm-4">Product Name</label>
+        <div class="col-sm-8">
+          <input required ng-model="upload.newProduct.name" class="form-control" type="Text" placeholder="Name of product">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-4">Product Price</label>
+        <div class="col-sm-8">
+          <input required ng-model="upload.newProduct.price" class="form-control" type="Text" placeholder="Price of product">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-4">Your Name</label>
+        <div class="col-sm-8">
+          <input required ng-model="upload.newProduct.creator" class="form-control" type="Text" placeholder="Your name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-4">Product Image</label>
+        <div class="col-sm-8">
+          <input required ng-model="upload.newProduct.image" class="form-control" type="file">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-4">Product Description</label>
+        <div class="col-sm-8">
+          <textarea required ng-model="upload.newProduct.description" class="form-control" rows="4" type="Text" placeholder="Description of your product"></textarea>
+        </div>
+      </div>
+
+      <div class="form-group text-left">
+        <div class="col-sm-8 col-sm-offset-4">
+          <button type="submit" class="btn btn-success">Upload Product</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
